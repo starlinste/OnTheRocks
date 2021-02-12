@@ -13,6 +13,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.articulateweb.ontherocks.R;
+import com.articulateweb.ontherocks.business.Objects.OBJHelpParent;
+import com.articulateweb.ontherocks.business.RestHandler;
+
+import java.io.IOException;
 
 public class HomeFragment extends Fragment {
 
@@ -23,6 +27,13 @@ public class HomeFragment extends Fragment {
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        try {
+            OBJHelpParent objHelp = RestHandler.getHelp();
+            System.out.println(objHelp.getRecords().get(0).getHeader());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //final TextView textView = root.findViewById(R.id.text_home);
 
